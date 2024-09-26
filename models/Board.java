@@ -33,6 +33,17 @@ public class Board {
         this.dimension = dimension;
     }
 
+    public void printBoard(){
+        for(List<Cell> row : board){
+            //printing each cell
+            for(Cell cell : row){
+//                System.out.print(cell.toString() + " ");
+                cell.display();
+            }
+            System.out.println();
+        }
+    }
+
     public List<List<Cell>> getBoard() {
         return board;
     }
@@ -40,4 +51,5 @@ public class Board {
     public void setBoard(List<List<Cell>> board) {
         this.board = board;
     }
+
 }

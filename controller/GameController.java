@@ -4,7 +4,7 @@ import com.example.lldbasics.machineCoding.tictactoe.exception.InvalidBotCountEx
 import com.example.lldbasics.machineCoding.tictactoe.exception.SymbolAlreadyUsedException;
 import com.example.lldbasics.machineCoding.tictactoe.models.Game;
 import com.example.lldbasics.machineCoding.tictactoe.models.Player;
-import com.example.lldbasics.machineCoding.tictactoe.winningStrategies.WinningStrategy;
+import com.example.lldbasics.machineCoding.tictactoe.strategies.winningStrategies.WinningStrategy;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ public class GameController {
 
     }
 
-    public void makeMove(){
-
+    public void makeMove(Game game){
+        game.makeMove();
     }
 
     public Player getWinner(){

@@ -4,10 +4,10 @@ import com.example.lldbasics.machineCoding.tictactoe.controller.GameController;
 import com.example.lldbasics.machineCoding.tictactoe.exception.InvalidBotCountException;
 import com.example.lldbasics.machineCoding.tictactoe.exception.SymbolAlreadyUsedException;
 import com.example.lldbasics.machineCoding.tictactoe.models.*;
-import com.example.lldbasics.machineCoding.tictactoe.winningStrategies.ColumnWinningStrategy;
-import com.example.lldbasics.machineCoding.tictactoe.winningStrategies.DiagonalWinningStrategy;
-import com.example.lldbasics.machineCoding.tictactoe.winningStrategies.RowWinningStrategy;
-import com.example.lldbasics.machineCoding.tictactoe.winningStrategies.WinningStrategy;
+import com.example.lldbasics.machineCoding.tictactoe.strategies.winningStrategies.ColumnWinningStrategy;
+import com.example.lldbasics.machineCoding.tictactoe.strategies.winningStrategies.DiagonalWinningStrategy;
+import com.example.lldbasics.machineCoding.tictactoe.strategies.winningStrategies.RowWinningStrategy;
+import com.example.lldbasics.machineCoding.tictactoe.strategies.winningStrategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,8 @@ public class Main {
         Game game = gameController.startGame(dimension, players, winningStrategies);
 
         while(game.getGameState().equals(GameState.IN_PROGRESS)){
-            gameController.makeMove();
             gameController.printGame();
+            gameController.makeMove(game);
         }
     }
 }

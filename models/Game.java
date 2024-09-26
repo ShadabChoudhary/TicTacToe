@@ -2,7 +2,7 @@ package com.example.lldbasics.machineCoding.tictactoe.models;
 
 import com.example.lldbasics.machineCoding.tictactoe.exception.InvalidBotCountException;
 import com.example.lldbasics.machineCoding.tictactoe.exception.SymbolAlreadyUsedException;
-import com.example.lldbasics.machineCoding.tictactoe.winningStrategies.WinningStrategy;
+import com.example.lldbasics.machineCoding.tictactoe.strategies.winningStrategies.WinningStrategy;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +35,20 @@ public class Game {
         this.nextPlayerMoveIndex = 0;
         this.moves = new ArrayList<>();
         this.winningStrategies = winningStrategies;
+    }
+
+    public void printBoard(){
+        board.printBoard();
+    }
+
+    public void makeMove(){
+        Player currPlayer = players.get(nextPlayerMoveIndex);
+        System.out.println(currPlayer.getName()+"'s turn");
+
+        Move move = currPlayer.makeMove(board);
+
+        System.out.println(currPlayer.getName()+"'s is making a move at "+move.getCell().getRow()+" "+move.getCell().getCol());
+
     }
 
     public static class Builder{
@@ -77,14 +91,14 @@ public class Game {
         }
 
         public void diffSymbolForEachPlayer() throws SymbolAlreadyUsedException {
-            Set<Symbol> useSymbol  = new HashSet<>();
+            Set<Symbol> usedSymbol  = new HashSet<>();
             for(Player player : players){
                 Symbol currSymbol = player.getSymbol();
                 //check symbol is already used or not
-                if(useSymbol.contains(currSymbol)){
+                if(usedSymbol.contains(currSymbol)){
                     throw new SymbolAlreadyUsedException("This symbol is already used");
                 }
-                useSymbol.add(currSymbol);
+                usedSymbol.add(currSymbol);
             }
         }
 
