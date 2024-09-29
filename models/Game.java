@@ -49,6 +49,22 @@ public class Game {
 
         System.out.println(currPlayer.getName()+"'s is making a move at "+move.getCell().getRow()+" "+move.getCell().getCol());
 
+        //Validate move when player enters the coordinates
+
+        //change the state of a cell when used
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        Cell cellToChange = board.getBoard().get(row).get(col);
+        cellToChange.setCellState(CellState.FILLED);
+        cellToChange.setPlayer(currPlayer);
+
+        //adding the curr move state in a list for undo feature
+        Move finalMoveObject = new Move(currPlayer, cellToChange);
+        moves.add(finalMoveObject);
+
+        nextPlayerMoveIndex += 1;
+        nextPlayerMoveIndex %= players.size();
     }
 
     public static class Builder{
